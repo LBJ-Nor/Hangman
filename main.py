@@ -25,9 +25,9 @@ def guess_validator():
                 if player_guess not in secret_word:
                     wrong_guess_counter += 1
 
-            for s in range(len(secret_word)):
-                if secret_word[s] == player_guess:
-                    placeholder[s] = player_guess
+            for slot in range(len(secret_word)):
+                if secret_word[slot] == player_guess:
+                    placeholder[slot] = player_guess
 
         else:
             print('Guess one letter at a time. Try again.')
