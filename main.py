@@ -2,9 +2,7 @@ from hangman_art import models
 import random
 
 with open('wordlist.txt') as f:
-    secret_word = (random.choice(f.readlines()))
-    secret_word = secret_word.upper()
-    secret_word = secret_word[:-1]
+    secret_word = (random.choice(f.readlines())).upper()[:-1]
 
 already_guessed = []
 wrong_guess_counter = 0
@@ -13,8 +11,7 @@ placeholder = ['_' for _ in range(len(secret_word))]
 
 def guess_validator():
     global wrong_guess_counter
-    player_guess = input('Guess a letter: ')
-    player_guess = player_guess.upper()
+    player_guess = input('Guess a letter: ').upper()
 
     if player_guess.isalpha():
         if len(player_guess) == 1:
