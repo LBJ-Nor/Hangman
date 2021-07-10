@@ -12,7 +12,8 @@ placeholder = ['_' for _ in range(len(secret_word))]
 def guess_validator():
     global wrong_guess_counter
     player_guess = input('Guess a letter: ').upper()
-
+    
+    # Validate input
     if player_guess.isalpha():
         if len(player_guess) == 1:
             if player_guess in already_guessed:
@@ -21,7 +22,7 @@ def guess_validator():
                 already_guessed.append(player_guess)
                 if player_guess not in secret_word:
                     wrong_guess_counter += 1
-
+            # fill placeholder by index
             for slot in range(len(secret_word)):
                 if secret_word[slot] == player_guess:
                     placeholder[slot] = player_guess
