@@ -36,10 +36,10 @@ def guess_validator():
 
 # Game loop
 while '_' in placeholder:
-    print(f"""{models[wrong_guess_counter]}
-Guess the word:  {' '.join(placeholder)}
-Already guessed: {', '.join(already_guessed)}
-""")
+    print(models[wrong_guess_counter])
+    print(f"Guess the word:  {' '.join(placeholder)}")
+    print(f"Already guessed: {', '.join(already_guessed)}")
+
     wrong_guess_counter += guess_validator()
 
     if wrong_guess_counter == len(models)-1:
