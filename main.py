@@ -10,9 +10,8 @@ placeholder = ['_' for _ in range(len(secret_word))]
 
 
 def guess_validator():
-    global wrong_guess_counter
     player_guess = input('Guess a letter: ').upper()
-    
+
     # Validate input
     if player_guess.isalpha():
         if len(player_guess) == 1:
@@ -21,18 +20,19 @@ def guess_validator():
             else:
                 already_guessed.append(player_guess)
                 if player_guess not in secret_word:
-                    wrong_guess_counter += 1
+                    return 1
             # fill placeholder by index
-            for slot in range(len(secret_word)):
-                if secret_word[slot] == player_guess:
-                    placeholder[slot] = player_guess
-
+                for slot in range(len(secret_word)):
+                    if secret_word[slot] == player_guess:
+                        placeholder[slot] = player_guess
+                return 0
         else:
             print('Guess one letter at a time. Try again.')
+            return 0
 
     else:
         print('That was not a letter. Try again.')
-
+        return 0
 
 # Game loop
 while '_' in placeholder:
@@ -40,12 +40,15 @@ while '_' in placeholder:
 Guess the word:  {' '.join(placeholder)}
 Already guessed: {', '.join(already_guessed)}
 """)
-    guess_validator()
-    if wrong_guess_counter == 6:
+    wrong_guess_counter += guess_validator()
+
+    if wrong_guess_counter == len(models)-1:
         print(f'The word was {secret_word}')
+        print(models[wrong_guess_counter])
         print('You died!')
         break
 
 if '_' not in placeholder:
     print(f' The word was {secret_word}')
     print('You win!')
+
